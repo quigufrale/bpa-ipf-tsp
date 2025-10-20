@@ -77,6 +77,7 @@ uscanc.c
 utils.c
 utils_db.c
 vertex.c
+define.c
 )
 
 ADD_LIBRARY(${IPFGUILIB} STATIC ${LIBGUI_src})

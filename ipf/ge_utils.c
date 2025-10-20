@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include "ge_utils.h"
+
 
 #if defined __WATCOMC__						/* WATCOM */
 
@@ -63,7 +65,7 @@ int rewind_ge_file( int * );
 static FILE *ge_fp[MAXFILES];       /* File pointers  */
 static char file[80][MAXFILES];     /* File names     */
 FILE *efopen (char *file, char *mode);
-char *progname;
+extern char *progname;
 
 /* ===================================================================
    End declarations, begin module code

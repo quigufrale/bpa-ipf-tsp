@@ -9,6 +9,9 @@ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/Modules/")
 
 INCLUDE(${CMAKE_MODULE_PATH}/SetFortranFlags.cmake) 
 
+# Relax legacy F77 calling conventions (gfortran 10+ stricter checks)
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fallow-argument-mismatch -std=legacy")
+
 # There is an error in CMAKE with this flag for pgf90.  Unset it
 GET_FILENAME_COMPONENT(FCNAME ${CMAKE_Fortran_COMPILER} NAME)
 IF(FCNAME STREQUAL "pgf90")
