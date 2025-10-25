@@ -29,3 +29,6 @@ docs/doxygen
 
 # ctags index file from running "ctags -R"
 tags
+
+# VS Code user-specific settings
+.vscode/settings.json
