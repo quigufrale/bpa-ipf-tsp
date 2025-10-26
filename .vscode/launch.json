@@ -2,25 +2,39 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug bpf (WSL)",
+      "name": "Debug bpf (WSL, gdb)",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/bpf",
-      "args": ["bench.pfc"],
-      "cwd": "${workspaceFolder}/data",
-      "environment": [
-        { "name": "LANG", "value": "C" }
-      ],
+
+      // 1) Point to the debug binary that actually has symbols
+      "program": "${workspaceFolder}/build_debug/bin/bpf",
+
+      // 2) Same case you run from the shell
+      "args": ["${workspaceFolder}/data/bench.pfc"],
+      "cwd": "${workspaceFolder}",
+
       "MIMode": "gdb",
       "miDebuggerPath": "/usr/bin/gdb",
-      "stopAtEntry": true,
+      "stopAtEntry": false,
       "externalConsole": false,
       "console": "integratedTerminal",
+
+      // Helpful for binding breakpoints set before symbols load
       "setupCommands": [
         { "description": "Enable pretty printing", "text": "-enable-pretty-printing" },
         { "description": "Pretty print structures", "text": "set print pretty on" },
-        { "description": "Show Fortran-style arrays", "text": "set print array on" }
+        { "description": "Show Fortran-style arrays", "text": "set print array on" },
+        { "description": "Allow pending breakpoints", "text": "set breakpoint pending on" }
       ],
+
+      // If you sometimes open the Windows path instead of Remote-WSL,
+      // uncomment and adjust this mapping:
+      // "sourceFileMap": {
+      //   "/home/qgfl/dev_for/bpa-ipf-tsp": "\\\\wsl$\\Ubuntu\\home\\qgfl\\dev_for\\bpa-ipf-tsp"
+      // },
+
+      // Temporary: turn on engine logs if breakpoints still won't bind
+      // "logging": { "engineLogging": true }
     }
   ]
 }

@@ -4,6 +4,9 @@ build
 lib
 Testing
 
+build_debug
+
+
 # Various files BPA programs create at runtime
 *.SCR
 *.bse
